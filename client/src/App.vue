@@ -1,8 +1,8 @@
 <template>
   <v-app class="bg-indigo-darken-3">
     <v-app-bar app dark v-if="isAuthenticated" color="#1A237E">
-      
-      <v-btn v-if="isAuthenticated" @click="signOut">Sign Out</v-btn>
+     <p class="mr-auto"> My Project Management App</p>
+     <v-icon v-if="isAuthenticated" @click="signOut" >mdi-logout</v-icon>
     </v-app-bar>
     <v-main v-if="!isAuthenticated" >
       <v-card-text v-if="showLoginForm" class="login-container">
