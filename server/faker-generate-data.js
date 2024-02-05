@@ -8,7 +8,6 @@ const generateProject = (owner) => ({
 
 const generateFakerProjects = (owner, numProjects) => {
     const projects = Array.from({length: numProjects}, () => generateProject(owner));
-    console.log(projects)
     return projects
 }
 

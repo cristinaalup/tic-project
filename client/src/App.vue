@@ -23,8 +23,6 @@
     <v-main v-if="isAuthenticated">
       
         <ProjectForm />
-        
-
         <ProjectsCarousel />
       
     </v-main>
@@ -48,7 +46,6 @@ export default {
       user: null,
       showProjectForm: false,
       projectsLoaded: false,
-      loadedProjects: [],
     };
   },
   created() {
