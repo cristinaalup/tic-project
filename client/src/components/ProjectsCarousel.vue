@@ -1,16 +1,22 @@
 <template>
   <div>
     <div>
-      <v-row justify="center" class="mx-auto container-styling" :class="{ 'flex-column': isMobileOrTablet }">
-        
-          <v-text-field v-model="ownerFilter" label="Search by owner" prepend-inner-icon="mdi-filter"/>
+      <v-row
+        justify="center"
+        class="mx-auto container-styling"
+        :class="{ 'flex-column': isMobileOrTablet }"
+      >
+        <v-text-field
+          v-model="ownerFilter"
+          label="Search by owner"
+          prepend-inner-icon="mdi-filter"
+        />
 
-          <v-text-field
-            v-model="projectNameFilter"
-            label="Search by project name"
-            prepend-inner-icon="mdi-filter"
-          />
-        
+        <v-text-field
+          v-model="projectNameFilter"
+          label="Search by project name"
+          prepend-inner-icon="mdi-filter"
+        />
       </v-row>
     </div>
     <v-carousel
@@ -63,6 +69,7 @@ export default {
     window.removeEventListener("resize", this.handleWindowResize);
   },
   async created() {
+    await this.$store.dispatch("fetchUser");
     await this.$store.dispatch("fetchProjects");
   },
   methods: {
@@ -104,7 +111,7 @@ export default {
         lg: 3,
       };
     },
-     handleWindowResize() {
+    handleWindowResize() {
       this.isMobileOrTablet = window.innerWidth <= 600;
       this.$forceUpdate();
     },
@@ -117,12 +124,12 @@ export default {
   width: 90%;
   margin: 20px;
   padding: 15px;
-  background: #7986cb; 
-  backdrop-filter: blur(5px); 
-  border-radius: 10px; 
+  background: #7986cb;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
   border-color: #7986cb;
   color: aliceblue;
-  gap: 10px
+  gap: 10px;
 }
 
 .carousel-row {
