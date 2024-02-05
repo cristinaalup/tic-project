@@ -1,8 +1,8 @@
 <template>
-  <v-container class="container-styling">
-    <v-row>
-      <v-col cols="12" md="4">
-        <v-form v-model="valid" class="form-flex">
+  <v-container>
+    <v-row justify="center" class="mx-auto container-styling">
+      <v-col >
+        <v-form v-model="valid" class="form-flex login-container">
           <h2 class="text-center">LOG IN FORM</h2>
           <v-text-field
             v-model="email"
@@ -91,10 +91,8 @@ export default {
           error.message
         );
         if (error.code === "auth/invalid-credential") {
-          // Corectează identificatorul erorii și mesajul
           this.error = "Invalid credentials";
         } else {
-          // Alte tratamente pentru alte erori posibile
           this.error = "An error occurred during sign-in.";
         }
       }
@@ -105,12 +103,12 @@ export default {
 
 <style scoped>
 .container-styling {
-  width: 400px;
+  width:450px;
   height: 450px;
   margin: 20px;
-  background: #7986cb; /* Gri transparent cu blur */
-  backdrop-filter: blur(5px); /* Efect de blur */
-  border-radius: 10px; /* Rotunjire colțuri */
+  background: #7986cb;
+  backdrop-filter: blur(5px); 
+  border-radius: 10px; 
   border-color: #7986cb;
 }
 
@@ -134,8 +132,17 @@ export default {
 }
 
 .register-link {
-  cursor: pointer; /* sau culoarea pe care o preferi pentru link-uri */
+  cursor: pointer; 
   text-decoration: underline;
-  user-select: none; /* opțional: pentru a preveni selectarea textului */
+  user-select: none; 
 }
+@media only screen and (max-width: 600px) {
+  .login-container {
+    padding: 15px; 
+  }
+  .container-styling{
+    width:100%;
+  }
+}
+
 </style>

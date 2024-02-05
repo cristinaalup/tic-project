@@ -1,8 +1,8 @@
 <template>
-  <v-container class="container-styling">
-    <v-row>
-      <v-col cols="12" md="4">
-        <v-form v-model="valid" class="form-flex">
+  <v-container>
+    <v-row class="container-styling mx-auto">
+      <v-col>
+        <v-form v-model="valid" class="form-flex register-container">
           <h2 class="text-center">REGISTER FORM</h2>
           <v-text-field
             v-model="email"
@@ -31,7 +31,7 @@
             :rules="passwordRules"
             prepend-inner-icon="mdi-lock"
           ></v-text-field>
-
+          
           <v-alert v-if="error" type="error" class="error-message">
             {{ error }}
           </v-alert>
@@ -104,6 +104,7 @@ export default {
         return true;
       },
     ],
+    
   }),
   methods: {
     showLoginForm() {
@@ -116,18 +117,20 @@ export default {
         this.lastNameRules.every((rule) => rule(this.lastName)) &&
         this.passwordRules.every((rule) => rule(this.password));
     },
+   
     async registerWithEmail() {
       try {
         const userCredentials = await createUserWithEmailAndPassword(
           auth,
           this.email,
-          this.password
+          this.password,
         );
 
         const user = userCredentials.user;
 
         await updateProfile(user, {
           displayName: `${this.firstName} ${this.lastName}`,
+          
         });
 
         try {
@@ -140,7 +143,7 @@ export default {
             });
         } catch (axiosError) {
           console.error("Error in axios request:", axiosError.message);
-          this.error=axios.code
+          this.error = axios.code;
         }
         this.$emit("userAuthenticated", user);
       } catch (error) {
@@ -166,9 +169,9 @@ export default {
   width: 450px;
   height: 500px;
   margin: 20px;
-  background: #7986cb; /* Gri transparent cu blur */
-  backdrop-filter: blur(5px); /* Efect de blur */
-  border-radius: 10px; /* Rotunjire colțuri */
+  background: #7986cb;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
   border-color: #7986cb;
 }
 
@@ -192,8 +195,17 @@ export default {
 }
 
 .login-link {
-  cursor: pointer; /* sau culoarea pe care o preferi pentru link-uri */
+  cursor: pointer;
   text-decoration: underline;
-  user-select: none; /* opțional: pentru a preveni selectarea textului */
+  user-select: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-container {
+    padding: 15px;
+  }
+  .container-styling {
+    width: 100%;
+  }
 }
 </style>

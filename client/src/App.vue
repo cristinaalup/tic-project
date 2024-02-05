@@ -1,11 +1,11 @@
 <template>
   <v-app class="bg-indigo-darken-3">
     <v-app-bar app dark v-if="isAuthenticated" color="#1A237E">
-      <v-app-bar-title> Companie </v-app-bar-title>
+      
       <v-btn v-if="isAuthenticated" @click="signOut">Sign Out</v-btn>
     </v-app-bar>
-    <v-main v-if="!isAuthenticated">
-      <v-card-text v-if="showLoginForm" class="mx-auto w-25 mt-16">
+    <v-main v-if="!isAuthenticated" >
+      <v-card-text v-if="showLoginForm" class="login-container">
         <LoginForm
           @showRegisterForm="showRegisterForm"
           @showLoginForm="toggleLoginForm"
@@ -22,9 +22,8 @@
     </v-main>
     <v-main v-if="isAuthenticated">
       
-        <div class="mx-auto w-25 mt-16">
-          <ProjectForm />
-        </div>
+        <ProjectForm />
+        
 
         <ProjectsCarousel />
       
@@ -94,16 +93,14 @@ export default {
 </script>
 
 <style scoped>
-.green-blur-card {
-  background: rgba(144, 238, 144, 0.3);
-  backdrop-filter: blur(10px);
+.login-container {
+  width: 100%;
 }
 
-.custom-card {
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
-}
 
+@media only screen and (max-width: 600px) {
+  .login-container {
+    padding: 15px; 
+  }
+}
 </style>
