@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center" class="mx-auto container-styling">
-      <v-col >
+      <v-col>
         <v-form v-model="valid" class="form-flex login-container">
           <h2 class="text-center">LOG IN FORM</h2>
           <v-text-field
@@ -16,6 +16,9 @@
             label="Password"
             :rules="passwordRules"
             prepend-inner-icon="mdi-lock"
+            :type="showPassword ? 'text' : 'password'"
+            append-icon="mdi-eye"
+            @click:append="showPassword = !showPassword"
           ></v-text-field>
 
           <v-alert v-if="error" type="error" class="error-message">
@@ -50,6 +53,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-configuration";
 export default {
   data: () => ({
+    showPassword: false,
     valid: false,
     error: "",
     email: "",
@@ -103,12 +107,12 @@ export default {
 
 <style scoped>
 .container-styling {
-  width:450px;
+  width: 450px;
   height: 450px;
   margin: 20px;
   background: #7986cb;
-  backdrop-filter: blur(5px); 
-  border-radius: 10px; 
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
   border-color: #7986cb;
 }
 
@@ -132,17 +136,16 @@ export default {
 }
 
 .register-link {
-  cursor: pointer; 
+  cursor: pointer;
   text-decoration: underline;
-  user-select: none; 
+  user-select: none;
 }
 @media only screen and (max-width: 600px) {
   .login-container {
-    padding: 15px; 
+    padding: 15px;
   }
-  .container-styling{
-    width:100%;
+  .container-styling {
+    width: 100%;
   }
 }
-
 </style>

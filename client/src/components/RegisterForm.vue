@@ -26,10 +26,13 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="password"
+           v-model="password"
             label="Password"
             :rules="passwordRules"
             prepend-inner-icon="mdi-lock"
+            :type="showPassword ? 'text' : 'password'"
+            append-icon="mdi-eye"
+            @click:append="showPassword = !showPassword"
           ></v-text-field>
           
           <v-alert v-if="error" type="error" class="error-message">
@@ -66,6 +69,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    showPassword: false,
     valid: false,
     error: "",
     firstName: "",
